@@ -1,9 +1,15 @@
-/*  液晶演示程序
+/*  
+    因为这个驱动程序是移植自8051的，原作者是厂家，但是因为不
+    知道啥原因，时序总是对不上，所以特别写了这个修复驱动程序
+    用于arduino等软件体系
+
+
+
+  液晶演示程序
   液晶模块型号：JLX12864G-086-PN(或12864G-0088)，串行接口！
     驱动IC是:UC1701X或兼容的IC,比如ST7565R
     编写：叶建人,11月5日,2013年
-    版权所有：晶联讯电子：网址  http://www.jlxlcd.cn; 
-    
+    重写人:杨飞,11月28日,2018年
 */
 
 //======================================================
@@ -113,7 +119,7 @@ void transfer_data(int data1)
   digitalWrite(cs1,0);
   digitalWrite(rs,1);
   delayMicroseconds(76);
-  shiftOut( sid, sclk,MSBFIRST, data1); 
+  shiftOut( sid, sclk,MSBFIRST, data1); //串行脉冲发送函数
   digitalWrite(cs1,1);
 }
 
